@@ -35,13 +35,40 @@ void initialize(AddressBook *addressBook) {
 }
 void createContact(AddressBook *addressBook)
 {
-    char name[20],email[25],phone [20];
+    char name[20],email[25],phone [20],res=0;
     printf("Enter name to create: ");
     scanf(" %[^\n]",name);
+    do
+    {
     printf("Enter phone No. to create: ");
     scanf(" %[^\n]",phone);
+    for(int i=0;i<addressBook->contactCount;i++)
+    {
+        res=0;
+        if(strcmp(phone,addressBook->contacts[i].phone)==0)
+        {
+            printf("Phone no.exists,enter again\n");
+            res=1;
+            break;
+        }
+    }
+    } while (res==1);
+    do
+    {
     printf("Enter email ID to create: ");
     scanf(" %[^\n]",email);
+    for(int i=0;i<addressBook->contactCount;i++)
+    {
+        res=0;
+        if(strcmp(addressBook->contacts[i].email,email)==0)
+        {
+           printf("Email ID exists ,Try again\n");
+           res=1;
+           break;
+        }
+    }
+    } while (res==1);
+
     strcpy(addressBook->contacts[addressBook->contactCount].name,name);
     strcpy(addressBook->contacts[addressBook->contactCount].phone,phone);
     strcpy(addressBook->contacts[addressBook->contactCount].email,email);
