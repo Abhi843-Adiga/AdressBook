@@ -35,7 +35,7 @@ void initialize(AddressBook *addressBook) {
 }
 void createContact(AddressBook *addressBook)
 {
-    char name[20],email[25],phone [20],res=0,pc=0,ec=0;
+    char name[20],email[25],phone [20],res=0,pc=0,ec=0,sp=0;
     printf("Enter name to create: ");
     scanf(" %[^\n]",name);
     do
@@ -65,10 +65,17 @@ void createContact(AddressBook *addressBook)
     {
     printf("Enter email ID to create: ");
     scanf(" %[^\n]",email);
-    ec=0;
+    ec=0,sp=0;
     char *cp=strchr(email,'@');
     char *cpm=strstr(email,".com");
-    if((cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+    for(int i=0;i<strlen(email);i++)
+    {
+        if(email[i]==' ')
+        {sp=1;
+         break;
+        }
+    }
+    if((!sp) && (cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
     {
        for(int i=0;i<addressBook->contactCount;i++)
     {
@@ -149,7 +156,7 @@ void searchContact(AddressBook *addressBook)
 
 void editContact(AddressBook *addressBook)
 {
-    int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0;
+    int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0,sp=0;
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
     printf("Choose option: ");
@@ -237,10 +244,18 @@ void editContact(AddressBook *addressBook)
                     {
                     printf("Enter email ID to create: ");
                     scanf(" %[^\n]",email);
-                    ec=0;
+                    ec=0,sp=0;
                     char *cp=strchr(email,'@');
                     char *cpm=strstr(email,".com");
-                    if((cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+                    for(int i=0;i<strlen(email);i++)
+                    {
+                        if(email[i]==' ')
+                        {
+                            sp=1;
+                            break;
+                        }
+                    }
+                    if((!sp) && (cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
                     {
                       for(int i=0;i<addressBook->contactCount;i++)
                     {
@@ -280,10 +295,18 @@ void editContact(AddressBook *addressBook)
                     {
                     printf("Enter email ID to create: ");
                     scanf(" %[^\n]",email);
-                    ec=0;
+                    ec=0,sp=0;
                     char *cp=strchr(email,'@');
                     char *cpm=strstr(email,".com");
-                    if((cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+                    for(int i=0;i<strlen(email);i++)
+                    {
+                        if(email[i]==' ')
+                        {
+                            sp=1;
+                            break;
+                        }
+                    }
+                    if((!sp) && (cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
                     {
                       for(int i=0;i<addressBook->contactCount;i++)
                     {
