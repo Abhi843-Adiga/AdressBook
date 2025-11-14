@@ -35,7 +35,7 @@ void initialize(AddressBook *addressBook) {
 }
 void createContact(AddressBook *addressBook)
 {
-    char name[20],email[25],phone [20],res=0,pc=0;
+    char name[20],email[25],phone [20],res=0,pc=0,ec=0;
     printf("Enter name to create: ");
     scanf(" %[^\n]",name);
     do
@@ -65,7 +65,12 @@ void createContact(AddressBook *addressBook)
     {
     printf("Enter email ID to create: ");
     scanf(" %[^\n]",email);
-    for(int i=0;i<addressBook->contactCount;i++)
+    ec=0;
+    char *cp=strchr(email,'@');
+    char *cpm=strstr(email,".com");
+    if((cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+    {
+       for(int i=0;i<addressBook->contactCount;i++)
     {
         res=0;
         if(strcmp(addressBook->contacts[i].email,email)==0)
@@ -75,7 +80,13 @@ void createContact(AddressBook *addressBook)
            break;
         }
     }
-    } while (res==1);
+    }
+    else
+    {
+        printf("Email ID is INVALID\n");
+        ec=1;
+    }
+    } while (res==1 || ec==1);
 
     strcpy(addressBook->contacts[addressBook->contactCount].name,name);
     strcpy(addressBook->contacts[addressBook->contactCount].phone,phone);
@@ -138,7 +149,7 @@ void searchContact(AddressBook *addressBook)
 
 void editContact(AddressBook *addressBook)
 {
-    int option,choice,index=-1,flag=0,uindex,pc=0;
+    int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0;
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
     printf("Choose option: ");
@@ -222,8 +233,32 @@ void editContact(AddressBook *addressBook)
                     break;
                     
                     case 3:
-                    printf("Enter new email: ");
+                    do
+                    {
+                    printf("Enter email ID to create: ");
                     scanf(" %[^\n]",email);
+                    ec=0;
+                    char *cp=strchr(email,'@');
+                    char *cpm=strstr(email,".com");
+                    if((cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+                    {
+                      for(int i=0;i<addressBook->contactCount;i++)
+                    {
+                         res=0;
+                         if(strcmp(addressBook->contacts[i].email,email)==0)
+                        {
+                           printf("Email ID exists ,Try again\n");
+                           res=1;
+                           break;
+                        }
+                    }
+                    }
+                    else
+                    {
+                        printf("Email ID is INVALID\n");
+                        ec=1;
+                    }
+                    } while (res==1 || ec==1);
                     strcpy(addressBook->contacts[index].email,email);
                     break;
 
@@ -241,8 +276,32 @@ void editContact(AddressBook *addressBook)
                         pc=1;
                     }
                     }while(pc==1);
-                    printf("Enter new email: ");
+                    do
+                    {
+                    printf("Enter email ID to create: ");
                     scanf(" %[^\n]",email);
+                    ec=0;
+                    char *cp=strchr(email,'@');
+                    char *cpm=strstr(email,".com");
+                    if((cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+                    {
+                      for(int i=0;i<addressBook->contactCount;i++)
+                    {
+                         res=0;
+                         if(strcmp(addressBook->contacts[i].email,email)==0)
+                        {
+                           printf("Email ID exists ,Try again\n");
+                           res=1;
+                           break;
+                        }
+                    }
+                    }
+                    else
+                    {
+                        printf("Email ID is INVALID\n");
+                        ec=1;
+                    }
+                    } while (res==1 || ec==1);
                     strcpy(addressBook->contacts[index].name,name);
                     strcpy(addressBook->contacts[index].phone,phone);
                     strcpy(addressBook->contacts[index].email,email);
