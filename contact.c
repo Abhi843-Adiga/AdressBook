@@ -33,17 +33,47 @@ void initialize(AddressBook *addressBook) {
      addressBook->contactCount = 0;
      populateAddressBook(addressBook);
 }
+int validatephone(char *phone)
+{
+   if((strlen(phone))==10)
+   return 1;
+   return 0;
+}
+int validateemail(char *email)
+{
+    int sp=0;
+    int l=strlen(email);
+    if(l<4)
+    return 0;
+    char *cp=strchr(email,'@');
+    if(cp==NULL)
+    return 0;
+    for(int i=0;i<l;i++)
+    {
+        if(email[i]==' ')
+        {sp=1;
+         break;
+        }
+    }
+    int d=strcmp(email+l-4,".com");
+    char *r=strchr(cp+1,'@');
+    if((!sp) && (cp!=email) && (!d) &&(!r))
+    return 1;
+    return 0;
+}
+
 void createContact(AddressBook *addressBook)
 {
-    char name[20],email[25],phone [20],res=0,pc=0,ec=0,sp=0;
+    char name[20],email[25],phone [20],res=0,pc=0,ec=0;
     printf("Enter name to create: ");
     scanf(" %[^\n]",name);
     do
     {
     printf("Enter phone No. to create: ");
     scanf(" %[^\n]",phone);
-    pc=0,res=0;
-    if(strlen(phone)==10)
+    res=0;
+    pc=validatephone(phone);
+    if(pc)
     {
        for(int i=0;i<addressBook->contactCount;i++)
     {
@@ -56,30 +86,19 @@ void createContact(AddressBook *addressBook)
     }
     } 
     else
-    {
-        printf("Phone no. should be 10 digits man\n");
-        pc=1;
-    }
-    } while (res==1 || pc==1);
+    printf("Phone no. should be 10 digits man\n");
+    } while (res==1 || pc==0);
     do
     {
     printf("Enter email ID to create: ");
     scanf(" %[^\n]",email);
-    ec=0,sp=0;
-    char *cp=strchr(email,'@');
-    char *cpm=strstr(email,".com");
-    for(int i=0;i<strlen(email);i++)
-    {
-        if(email[i]==' ')
-        {sp=1;
-         break;
-        }
-    }
-    if((!sp) && (cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+    res=0;
+    ec=validateemail(email);
+    if(ec)
     {
        for(int i=0;i<addressBook->contactCount;i++)
     {
-        res=0;
+        
         if(strcmp(addressBook->contacts[i].email,email)==0)
         {
            printf("Email ID exists ,Try again\n");
@@ -89,11 +108,8 @@ void createContact(AddressBook *addressBook)
     }
     }
     else
-    {
-        printf("Email ID is INVALID\n");
-        ec=1;
-    }
-    } while (res==1 || ec==1);
+    printf("Email ID is INVALID\n");
+    } while (res==1 || ec==0);
 
     strcpy(addressBook->contacts[addressBook->contactCount].name,name);
     strcpy(addressBook->contacts[addressBook->contactCount].phone,phone);
@@ -156,7 +172,7 @@ void searchContact(AddressBook *addressBook)
 
 void editContact(AddressBook *addressBook)
 {
-    int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0,sp=0;
+    int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0;
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
     printf("Choose option: ");
@@ -229,13 +245,23 @@ void editContact(AddressBook *addressBook)
                     do{
                     printf("Enter new phone no: ");
                     scanf(" %[^\n]",phone);
-                    pc=0;
-                    if(strlen(phone)!=10)
+                    res=0;
+                    pc=validatephone(phone);
+                    if(pc)
                     {
-                        printf("Phone no. should be 10 digits\n");
-                        pc=1;
+                    for(int i=0;i<addressBook->contactCount;i++)
+                    {
+                       if(strcmp(phone,addressBook->contacts[i].phone)==0)
+                    {
+                        printf("Phone no.exists,enter again\n");
+                        res=1;
+                        break;
                     }
-                    }while(pc==1);
+                    }
+                    }
+                    else
+                    printf("Phone no. should be 10 digits\n");
+                    }while(pc==0 || res==1);
                     strcpy(addressBook->contacts[index].phone,phone);
                     break;
                     
@@ -244,18 +270,8 @@ void editContact(AddressBook *addressBook)
                     {
                     printf("Enter email ID to create: ");
                     scanf(" %[^\n]",email);
-                    ec=0,sp=0;
-                    char *cp=strchr(email,'@');
-                    char *cpm=strstr(email,".com");
-                    for(int i=0;i<strlen(email);i++)
-                    {
-                        if(email[i]==' ')
-                        {
-                            sp=1;
-                            break;
-                        }
-                    }
-                    if((!sp) && (cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+                    ec=validateemail(email);
+                    if(ec)
                     {
                       for(int i=0;i<addressBook->contactCount;i++)
                     {
@@ -269,11 +285,8 @@ void editContact(AddressBook *addressBook)
                     }
                     }
                     else
-                    {
-                        printf("Email ID is INVALID\n");
-                        ec=1;
-                    }
-                    } while (res==1 || ec==1);
+                    printf("Email ID is INVALID\n");
+                    } while (res==1 || ec==0);
                     strcpy(addressBook->contacts[index].email,email);
                     break;
 
@@ -284,29 +297,29 @@ void editContact(AddressBook *addressBook)
                     do{
                     printf("Enter new phone no: ");
                     scanf(" %[^\n]",phone);
-                    pc=0;
-                    if(strlen(phone)!=10)
+                    res=0;
+                    pc=validatephone(phone);
+                    if(pc)
                     {
-                        printf("Phone no. should be 10 digits\n");
-                        pc=1;
+                    for(int i=0;i<addressBook->contactCount;i++)
+                    {
+                       if(strcmp(phone,addressBook->contacts[i].phone)==0)
+                    {
+                        printf("Phone no.exists,enter again\n");
+                        res=1;
+                        break;
                     }
-                    }while(pc==1);
+                    }
+                    }
+                    else
+                    printf("Phone no. should be 10 digits\n");
+                    }while(pc==0 || res==1);
                     do
                     {
                     printf("Enter email ID to create: ");
                     scanf(" %[^\n]",email);
-                    ec=0,sp=0;
-                    char *cp=strchr(email,'@');
-                    char *cpm=strstr(email,".com");
-                    for(int i=0;i<strlen(email);i++)
-                    {
-                        if(email[i]==' ')
-                        {
-                            sp=1;
-                            break;
-                        }
-                    }
-                    if((!sp) && (cp!=NULL) && (cpm!=NULL) && (cp<cpm) && (cp!=email))
+                    ec=validateemail(email);
+                    if(ec)
                     {
                       for(int i=0;i<addressBook->contactCount;i++)
                     {
@@ -320,11 +333,8 @@ void editContact(AddressBook *addressBook)
                     }
                     }
                     else
-                    {
-                        printf("Email ID is INVALID\n");
-                        ec=1;
-                    }
-                    } while (res==1 || ec==1);
+                    printf("Email ID is INVALID\n");
+                    } while (res==1 || ec==0);
                     strcpy(addressBook->contacts[index].name,name);
                     strcpy(addressBook->contacts[index].phone,phone);
                     strcpy(addressBook->contacts[index].email,email);
@@ -398,7 +408,7 @@ void deleteContact(AddressBook *addressBook)
     }
     if(index!=-1)
     {
-        for(int i=index;i<addressBook->contactCount;i++)
+        for(int i=index;i<addressBook->contactCount-1;i++)
         addressBook->contacts[i]=addressBook->contacts[i+1];
         (addressBook->contactCount)--;
     }
