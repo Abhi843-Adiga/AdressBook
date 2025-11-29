@@ -1,7 +1,7 @@
 ADDRESS BOOK SYSTEM:
 
-This project is designed to effeciently manage and organize contacts.
-It gives the understanding of modular programming using structures,functions,pointers and strings manipulations in C.
+This project is designed to effeciently manage,organize and store contacts.
+It gives the understanding of modular programming using structures,functions,pointers,strings manipulations and file handling in C.
 
 KEY FEATURES OF THIS PROJECT:
 
@@ -10,10 +10,12 @@ KEY FEATURES OF THIS PROJECT:
 3. Edit Contacts: Update existing contact information easily.   
 4. Delete Contacts: Remove unwanted entries.      
 5. List all contacts: Lists all Contacts in clean format.
+6. Permanent data storage: All contact files are saved in external file in order to save contact information even if the program ends.
 
 SKILLS AND TECHNOLOGIES:
 
-1. C Programming:Structures,Strings,arrays and pointers.  
+1. C Programming:Structures,Strings,arrays,pointers and File handling.  
 2. Well Organized Codebase: Code organized across multiple .c files and .h     files for scalability.      
-3. Data Integrity & stability:Ensured accurate processing and smooth user      experience.   
+3. Data Integrity & stability:Ensured accurate processing and smooth user      experience.
+
 
