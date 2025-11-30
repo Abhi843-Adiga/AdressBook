@@ -183,7 +183,7 @@ void searchContact(AddressBook *addressBook)
 
 void editContact(AddressBook *addressBook)
 {
-    int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0,ind[25],collect;
+    int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0,ind[25],collect,v;
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
     printf("Choose option: ");
@@ -239,12 +239,28 @@ void editContact(AddressBook *addressBook)
         printf("Try again U choose wrong option\n");
         
     }
-    if(flag!=0)
+    if(flag>1)
     {
+        do 
+        {
         printf("Choose the index: ");
         scanf("%d",&uindex);
-        index=uindex;
+        v=0;
+        for(int i=0;i<flag;i++)
+        {
+            if(uindex==ind[i])
+            {
+                index=uindex;
+                v=1;
+                break;
+            }
+        }
+        if(!v)
+        printf("Choose the correct index man\n");
+        }while(!v);
     }
+    else if(flag!=0)
+    index=ind[0];
     if(index!=-1)
             {
                 printf("1.edit name\n2.edit phone\n3.edit email\n4.edit all fields\n");
@@ -353,7 +369,7 @@ void editContact(AddressBook *addressBook)
 
 void deleteContact(AddressBook *addressBook)
 {
-    int option,index=-1,flag=0,uindex,ind[25],collect;
+    int option,index=-1,flag=0,uindex,ind[25],collect,v;
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
     printf("Choose option: ");
@@ -409,12 +425,28 @@ void deleteContact(AddressBook *addressBook)
         printf("Try again U choose wrong option\n");
         
     }
-    if(flag!=0)
+    if(flag>1)
     {
+        do 
+        {
         printf("Choose the index: ");
         scanf("%d",&uindex);
-        index=uindex;
+        v=0;
+        for(int i=0;i<flag;i++)
+        {
+            if(uindex==ind[i])
+            {
+                index=uindex;
+                v=1;
+                break;
+            }
+        }
+        if(!v)
+        printf("Choose the correct index man\n");
+        }while(!v);
     }
+    else if(flag!=0)
+    index=ind[0];
     if(index!=-1)
     {
         for(int i=index;i<addressBook->contactCount-1;i++)
