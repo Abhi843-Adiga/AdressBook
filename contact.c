@@ -7,27 +7,56 @@
 
 void listContacts(AddressBook *addressBook, int sortCriteria) 
 {
+    Contact te[addressBook->contactCount];
+    for(int i=0;i<addressBook->contactCount;i++)
+    te[i]=addressBook->contacts[i];
     if(sortCriteria==1)
     {
-        for(int i=0;i<addressBook->contactCount;i++)
+        for(int i=0;i<addressBook->contactCount-1;i++)
         {
-    printf("%s %s %s\n",addressBook->contacts[i].name,addressBook->contacts[i].phone,addressBook->contacts[i].email);           
+           for(int j=0;j<addressBook->contactCount-i-1;j++)
+           {
+              if(strcasecmp(te[j].name,te[j+1].name)>0)
+              {
+                Contact t=te[j];
+                te[j]=te[j+1];
+                te[j+1]=t;
+              }
+           }
         }
     }
     else if(sortCriteria==2)
     {
-        for(int i=0;i<addressBook->contactCount;i++)
+        for(int i=0;i<addressBook->contactCount-1;i++)
         {
-          printf("%s %s %s\n",addressBook->contacts[i].phone,addressBook->contacts[i].email,addressBook->contacts[i].name);
+           for(int j=0;j<addressBook->contactCount-i-1;j++)
+           {
+              if(strcasecmp(te[j].phone,te[j+1].phone)>0)
+              {
+                Contact t=te[j];
+                te[j]=te[j+1];
+                te[j+1]=t;
+              }
+           }
         }
     } 
     else if(sortCriteria==3)
     {
-        for(int i=0;i<addressBook->contactCount;i++)
+        for(int i=0;i<addressBook->contactCount-1;i++)
         {
-          printf("%s %s %s\n",addressBook->contacts[i].email,addressBook->contacts[i].name,addressBook->contacts[i].phone);
+           for(int j=0;j<addressBook->contactCount-i-1;j++)
+           {
+              if(strcasecmp(te[j].email,te[j+1].email)>0)
+              {
+                Contact t=te[j];
+                te[j]=te[j+1];
+                te[j+1]=t;
+              }
+           }
         }
     }
+    for(int i=0;i<addressBook->contactCount;i++)
+    printf("%s %s %s\n",te[i].name,te[i].phone,te[i].email);  
 }
 
 void initialize(AddressBook *addressBook) {

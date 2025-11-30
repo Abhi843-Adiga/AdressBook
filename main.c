@@ -38,7 +38,6 @@ int main() {
                 printf("3. Sort by email\n");
                 printf("Enter your choice: ");
                 int sortChoice;
-                printf("Enter your choice: ");
                 if(scanf("%d", &sortChoice)==1 && (sortChoice<=3 && sortChoice>=1))
                 listContacts(&addressBook, sortChoice);
                 else
