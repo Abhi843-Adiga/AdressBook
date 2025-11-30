@@ -127,8 +127,8 @@ void searchContact(AddressBook *addressBook)
     int option,flag=0,ind[25],collect;
     char name[20],phone[20],email[25];
     printf("Choose option:\n");
-    scanf("%d",&option);
-     
+    if(scanf("%d",&option)==1 && (option>=1 && option<=3))
+    {
     switch(option)
     {
         case 1:
@@ -176,8 +176,12 @@ void searchContact(AddressBook *addressBook)
         else
         printf("Email ID isn't present\n");
         break;
-        default:
-        printf("try again U choose wrong option\n");
+    }
+    }
+    else
+    {
+        printf("Option invalid !\n");
+        while(getchar()!='\n');
     }
 }
 
@@ -187,7 +191,8 @@ void editContact(AddressBook *addressBook)
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
     printf("Choose option: ");
-    scanf("%d",&option);
+    if(scanf("%d",&option)==1 && (option>=1 && option<=3))
+    {
     switch(option)
     {
         case 1:
@@ -235,16 +240,20 @@ void editContact(AddressBook *addressBook)
         else
         printf("Email ID isn't present\n");
         break;
-        default:
-        printf("Try again U choose wrong option\n");
-        
+    }
+    }
+    else
+    {
+        printf("Option INVALID !\n");
+        while(getchar()!='\n');
     }
     if(flag>1)
     {
         do 
         {
         printf("Choose the index: ");
-        scanf("%d",&uindex);
+        if(scanf("%d",&uindex)==1)
+        {
         v=0;
         for(int i=0;i<flag;i++)
         {
@@ -257,6 +266,12 @@ void editContact(AddressBook *addressBook)
         }
         if(!v)
         printf("Choose the correct index man\n");
+        }
+        else
+        {
+            printf("option is invalid\n");
+            while(getchar()!='\n');
+        }
         }while(!v);
     }
     else if(flag!=0)
@@ -265,7 +280,8 @@ void editContact(AddressBook *addressBook)
             {
                 printf("1.edit name\n2.edit phone\n3.edit email\n4.edit all fields\n");
                 printf("Choose the option: ");
-                scanf("%d",&choice);
+                if(scanf("%d",&choice)==1 && (option>=1 && option<=4))
+                {
                 switch(choice)
                 {
                     case 1:
@@ -358,12 +374,14 @@ void editContact(AddressBook *addressBook)
                     strcpy(addressBook->contacts[index].phone,phone);
                     strcpy(addressBook->contacts[index].email,email);
                     break;
-
-                    default:
-                    printf("Choose the right option man\n");
-
                 }
             }
+            else
+            {
+                printf("Option INVALID !");
+                while(getchar()!='\n');
+            }
+        }
 }
 
 
@@ -373,7 +391,8 @@ void deleteContact(AddressBook *addressBook)
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
     printf("Choose option: ");
-    scanf("%d",&option);
+    if(scanf("%d",&option)==1 && (option>=1 && option<=3))
+    {
     switch(option)
     {
         case 1:
@@ -420,17 +439,21 @@ void deleteContact(AddressBook *addressBook)
         }
         else
         printf("Email ID isn't present\n");
-        break;
-        default:
-        printf("Try again U choose wrong option\n");
-        
+        break;       
+    }
+    }
+    else
+    {
+        printf("Option is invalid\n");
+        while(getchar()!='\n');
     }
     if(flag>1)
     {
         do 
         {
         printf("Choose the index: ");
-        scanf("%d",&uindex);
+        if(scanf("%d",&uindex)==1)
+        {
         v=0;
         for(int i=0;i<flag;i++)
         {
@@ -443,6 +466,12 @@ void deleteContact(AddressBook *addressBook)
         }
         if(!v)
         printf("Choose the correct index man\n");
+        }
+        else
+        {
+            printf("Option INVALID\n");
+            while(getchar()!='\n');
+        }
         }while(!v);
     }
     else if(flag!=0)
