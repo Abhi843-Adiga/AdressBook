@@ -82,6 +82,11 @@ int check(AddressBook *addressBook,char *which,int *ind,int t)
 }   
 void createContact(AddressBook *addressBook)
 {
+    if(addressBook->contactCount > MAX_CONTACTS)
+    {
+        printf("Address Book is full\n");
+        return ;
+    }
     char name[20],email[25],phone [20],res=0,pc=0,ec=0;
     int ind[25];
     printf("Enter name to create: ");
