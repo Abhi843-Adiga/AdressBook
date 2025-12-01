@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "contact.h"
 #include "populate.h"
 #include "file.h"
@@ -55,6 +56,8 @@ void listContacts(AddressBook *addressBook, int sortCriteria)
            }
         }
     }
+    printf("LISTING CONTACTS.......\n");
+    sleep(2);
     int c=1;
     for(int i=0;i<addressBook->contactCount;i++)
     {
@@ -67,6 +70,8 @@ void listContacts(AddressBook *addressBook, int sortCriteria)
 void initialize(AddressBook *addressBook) {
      addressBook->contactCount = 0;
      //populateAddressBook(addressBook);
+     printf("INITIALISING CONTACTS.......\n");
+     sleep(2);
      loadContactsFromFile(addressBook);
 }
 int validatephone(char *phone)
@@ -121,6 +126,8 @@ void createContact(AddressBook *addressBook)
         printf("Address Book is full\n");
         return ;
     }
+    printf("CREATE CONTACTS.......\n");
+    sleep(2);
     char name[20],email[25],phone [20],res=0,pc=0,ec=0;
     int ind[25];
     printf("Enter name to create: ");
@@ -158,10 +165,14 @@ void createContact(AddressBook *addressBook)
     strcpy(addressBook->contacts[addressBook->contactCount].phone,phone);
     strcpy(addressBook->contacts[addressBook->contactCount].email,email);
     (addressBook->contactCount)++;
+    printf("CREATED CONTACTS SUCCESSFULLY !!.......\n");
+    sleep(2);
 }
 
 void searchContact(AddressBook *addressBook) 
 { 
+    printf("SEARCHING CONTACTS.......\n");
+    sleep(2);
     printf("1. search by name\n2. search by ph no\n3.search by email id\n");
     int option,flag=0,ind[25],collect;
     char name[20],phone[20],email[25];
@@ -226,6 +237,8 @@ void searchContact(AddressBook *addressBook)
 
 void editContact(AddressBook *addressBook)
 {
+    printf("EDITING CONTACTS.......\n");
+    sleep(2);
     int option,choice,index=-1,flag=0,uindex,pc=0,ec=0,res=0,ind[25],collect,v;
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
@@ -421,11 +434,15 @@ void editContact(AddressBook *addressBook)
                 while(getchar()!='\n');
             }
         }
+    printf("EDITED CONTACTS SUCCESSFULLY !!.......\n");
+    sleep(2);
 }
 
 
 void deleteContact(AddressBook *addressBook)
 {
+    printf("DELETING CONTACTS.......\n");
+    sleep(2);
     int option,index=-1,flag=0,uindex,ind[25],collect,v;
     char name[20],phone[20],email[25];
     printf("1.Choose by name\n2.Choose by phone\n3.Choose by email\n");
@@ -521,4 +538,6 @@ void deleteContact(AddressBook *addressBook)
         addressBook->contacts[i]=addressBook->contacts[i+1];
         (addressBook->contactCount)--;
     }
+    printf("DELETED CONTACT SUCCESSFULLY.......\n");
+    sleep(2);
 }
