@@ -55,8 +55,13 @@ void listContacts(AddressBook *addressBook, int sortCriteria)
            }
         }
     }
+    int c=1;
     for(int i=0;i<addressBook->contactCount;i++)
-    printf("%s %s %s\n",te[i].name,te[i].phone,te[i].email);  
+    {
+        printf("%d. %s %s %s\n",c,te[i].name,te[i].phone,te[i].email); 
+        c++;
+    }
+     
 }
 
 void initialize(AddressBook *addressBook) {
@@ -174,7 +179,7 @@ void searchContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -189,7 +194,7 @@ void searchContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -204,7 +209,7 @@ void searchContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -238,7 +243,7 @@ void editContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -253,7 +258,7 @@ void editContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -268,7 +273,7 @@ void editContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -438,7 +443,7 @@ void deleteContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -453,7 +458,7 @@ void deleteContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
@@ -468,7 +473,7 @@ void deleteContact(AddressBook *addressBook)
             for(int i=0;i<flag;i++)
             {
                 collect=ind[i];
-                printf("%d %s %s %s\n",collect,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
+                printf("%d. %s %s %s\n",collect+1,addressBook->contacts[collect].name,addressBook->contacts[collect].phone,addressBook->contacts[collect].email);
             }
         }
         else
