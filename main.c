@@ -8,14 +8,14 @@ int main() {
     initialize(&addressBook); // Initialize the address book
 
     do {
-        printf("\nAddress Book Menu:\n");
-        printf("1. Create contact\n");
-        printf("2. Search contact\n");
-        printf("3. Edit contact\n");
-        printf("4. Delete contact\n");
-        printf("5. List all contacts\n");
-        printf("6. Exit\n");
-        printf("Enter your choice: ");
+        printf("\n%*s|%-20s|\n",50,""," ADDRESS BOOK MENU");
+        printf("%*s|%-20s|\n",50,"","1. Create contact");
+        printf("%*s|%-20s|\n",50,"","2. Search contact");
+        printf("%*s|%-20s|\n",50,"","3. Edit contact");
+        printf("%*s|%-20s|\n",50,"","4. Delete contact");
+        printf("%*s|%-20s|\n",50,"","5. List all contacts");
+        printf("%*s|%-20s|\n",50,"","6. Exit");
+        printf("\nEnter your choice: ");
         if(scanf("%d",&choice)==1 && (choice>=1 && choice<=6))
         {
         switch (choice) {
@@ -32,17 +32,17 @@ int main() {
                 deleteContact(&addressBook);
                 break;
             case 5:
-                printf("Select sort criteria:\n");
-                printf("1. Sort by name\n");
-                printf("2. Sort by phone\n");
-                printf("3. Sort by email\n");
-                printf("Enter your choice: ");
+                printf("\n%*s|%-24s|\n",50,""," Select Sort Criteria");
+                printf("%*s|%-24s|\n",50,"","1. Sort by Name");
+                printf("%*s|%-24s|\n",50,"","1. Sort by Phone Number");
+                printf("%*s|%-24s|\n",50,"","1. Sort by Email ID");
+                printf("\nEnter your choice: ");
                 int sortChoice;
                 if(scanf("%d", &sortChoice)==1 && (sortChoice<=3 && sortChoice>=1))
                 listContacts(&addressBook, sortChoice);
                 else
                 {
-                    printf("Please provide correct sortchoice\n");
+                    printf("\nPlease Provide Correct Sortchoice\n");
                     while(getchar()!='\n');
                 }
                 break;
@@ -54,7 +54,7 @@ int main() {
         }
         else
         {
-            printf("Invalid choice\n");
+            printf("Invalid choice!!\n");
             while(getchar()!='\n');
         }
     } while (choice != 6);
