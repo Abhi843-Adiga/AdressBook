@@ -11,11 +11,13 @@ KEY FEATURES OF THIS PROJECT:
 4. Delete Contacts: Remove unwanted entries.      
 5. List all contacts: Lists all Contacts in clean format.
 6. Permanent data storage: All contact files are saved in external file in order to save contact information even if the program ends.
+7. Uses Makefile to automate build process.
 
 SKILLS AND TECHNOLOGIES:
 
 1. C Programming:Structures,Strings,arrays,pointers and File handling.  
 2. Well Organized Codebase: Code organized across multiple .c files and .h     files for scalability.      
 3. Data Integrity & stability:Ensured accurate processing and smooth user      experience.
+
 
 
