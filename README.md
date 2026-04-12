@@ -1,23 +1,38 @@
-ADDRESS BOOK SYSTEM:
+# ADDRESS BOOK SYSTEM
 
-This project is designed to effeciently manage,organize and store contacts.
-It gives the understanding of modular programming using structures,functions,pointers,strings manipulations and file handling in C.
+This project is designed to effeciently manage,organize and store contacts that gives the understanding of modular programming using structures,functions,pointers,strings manipulations and file handling in C.
 
-KEY FEATURES OF THIS PROJECT:
+---
 
-1. Add Contacts: Store essential details such as name,phone no. and email.  
-2. Search contacts: Instantly find contacts by name,phone or email.  
-3. Edit Contacts: Update existing contact information easily.   
-4. Delete Contacts: Remove unwanted entries.      
-5. List all contacts: Lists all Contacts in clean format.
-6. Permanent data storage: All contact files are saved in external file in order to save contact information even if the program ends.
-7. Uses Makefile to automate build process.
+## KEY FEATURES OF THIS PROJECT
 
-SKILLS AND TECHNOLOGIES:
+- Add Contacts - Store essential details such as name,phone no. and email.  
+- Search contacts - Instantly find contacts by name,phone or email.  
+- Edit Contacts - Update existing contact information easily.   
+- Delete Contacts - Remove unwanted entries.      
+- List all contacts - Lists all Contacts in clean format.
+- Permanent data storage - All contact files are saved in external file in order to save contact information even if the program ends.
+- Uses Makefile to automate build process.
 
-1. C Programming:Structures,Strings,arrays,pointers and File handling.  
-2. Well Organized Codebase: Code organized across multiple .c files and .h     files for scalability.      
-3. Data Integrity & stability:Ensured accurate processing and smooth user      experience.
+---
 
+## CONCEPTS USED
+
+| Concept | Usage |
+|---|---|
+| Structures | Contact data representation |
+| Strings | Name, phone, email manipulation |
+| File Handling | Persistent contact storage |
+| Modular Programming | Split across multiple .c and .h files |
+| Makefile | Automated compilation |
+
+---
+
+## File Structure
+
+- main.c - Entry point
+- contact.c - Add,Edit,Delete,Search,List operations.
+- file.c - File read/write.
+- Makefile - Automated builds
 
 
